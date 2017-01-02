@@ -1,0 +1,25 @@
+html {
+    background-image: url("img/slide01.jpg");
+    background-size:cover;
+    margin: 0;
+    padding: 0;
+
+};
+
+#bkg {
+    background-image: none;
+    background-size: cover;
+    margin: 10px;
+}
+
+#canvas {
+    display: block;
+    margin: auto;
+    background-image: none;
+    background-size: cover;
+    width: 500px;
+    height: 600px;
+    border-color:transparent;
+    border-style: solid;
+    border-raduis: 5px;
+}

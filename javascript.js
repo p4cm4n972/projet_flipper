@@ -26,7 +26,7 @@ var ball = {
     color: tableauCouleur[nbAlea()],
     draw: function () {
         context.beginPath();
-        context.arc(this.x,this.y, 50/2, 0, Math.PI*2);
+        context.arc(this.x,this.y, 25/2, 0, Math.PI*2);
         context.closePath ();
         context.fillStyle = this.color;
         context.fill();
@@ -52,6 +52,15 @@ function draw() {
     }
     if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
         ball.vx = -ball.vx
+    }
+
+    window.onkeydown = function (event) {
+        var code = event.keyCode;
+        switch (code) {
+            case 32:
+            ball.vy *= 1.99;
+            baal.vy += 0.25;
+        }
     }
 
     window.requestAnimationFrame(draw);

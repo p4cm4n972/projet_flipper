@@ -1,13 +1,8 @@
-html {
-  background-image: url("img/slide01.jpg");
+body {
+  background-image: url("img/bkg.jpg");
   background-size: cover;
   margin: 0;
   padding: 0; }
-
-#bkg {
-  background-image: none;
-  background-size: cover;
-  margin: 20px, 20px, 20px, 20px; }
 
 #canvas {
   display: block;

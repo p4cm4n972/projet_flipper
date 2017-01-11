@@ -1,75 +1,99 @@
 window.addEventListener('load', function () {
 
-var tableauCouleur = ['Aqua','Black', 'Blue', 'Fuchsia', 'Gray', 'Green', 'Lime', 'Maroon', 'Navy', 'Olive', 'Purple', 'Red', 'Silver', 'Teal', 'White', 'Yellow'];
-var clickOn = false;
+    var mur = new Image('width: 600, height: 620');
+    mur.src = 'img/font.jpg';
+    var tableauCouleur = ['Aqua', 'Black', 'Blue', 'Fuchsia', 'Gray', 'Green', 'Lime', 'Maroon', 'Navy', 'Olive', 'Purple', 'Red', 'Silver', 'Teal', 'White', 'Yellow'];
+    var x = 100;
+    var y = 10;
+    var vx = 5;
+    var vy = 2;
+    var q = 170;
+    var s = 580;
+    var u = 430;
+    var v = 580;
 
-window.addEventListener('click', function () {
-    if (!clickOn) { 
-document.body.style.backgroundImage = "url('img/bkg.jpg')";
-document.getElementById('canvas').style.borderColor = "purple";
 
 
 
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
+    function game() {
 
-var nbAlea = function () {
-    var nb = 0 + ((tableauCouleur.length-1) - 0 + 1) * Math.random();
-    return Math.floor(nb);
-};
+        var context = document.getElementById('canvas').getContext('2d');
 
-var ball = {
-    x: 100,
-    y: 100,
-    vx: 5,
-    vy: 2,
-    color: tableauCouleur[nbAlea()],
-    draw: function () {
+        context.drawImage(mur, 0, 0);
+
         context.beginPath();
-        context.arc(this.x,this.y, 25/2, 0, Math.PI*2);
-        context.closePath ();
-        context.fillStyle = this.color;
+        context.rect(q, s, 100, 15);
+        context.closePath();
+        context.fillStyle = 'yellow';
         context.fill();
         
-    }
-};
+        context.beginPath();
+        context.rect(u, v, -100, 15);
+        context.closePath();
+        context.fillStyle = 'yellow';
+        context.fill();
 
-function draw() {
-    var linear = context.createLinearGradient(0, 0, 600, 650);
-    linear.addColorStop(0, '#F909CD');
-    linear.addColorStop(1, '#32CDFC');
-    context.fillStyle = linear;
-    context.fillRect(0, 0, 600, 650);
-    
-    ball.draw();
-    ball.x += ball.vx;
-    ball.y += ball.vy;
-    ball.vy *= 0.99;
-    ball.vy += 0.25;
+        context.beginPath();
+        context.arc(x, y, 40 / 2, 0, Math.PI * 2);
+        context.closePath();
+        context.fillStyle = 'blue';
+        context.fill();
+        x += vx;
+        y += vy;
+        vy *= 0.99;
+        vy += 0.25;
 
-    if(ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0 ) {
-        ball.vy = -ball.vy;
-    }
-    if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-        ball.vx = -ball.vx
-    }
-
-    window.onkeydown = function (event) {
-        var code = event.keyCode;
-        switch (code) {
-            case 32:
-            ball.vy *= 1.99;
-            baal.vy += 0.25;
+        if (y + vy > canvas.height || y + vy < 0) {
+            vy = -vy;
         }
-    }
+        if (x + vx > canvas.width || x + vx < 0) {
+            vx = -vx;
+        }
 
-    window.requestAnimationFrame(draw);
-    }
+        if (q < x + 15 && q + 100 > x && 580 < y + 15 && 15 + 580 > y) {
+            vy *= -1.2;
+        }
+        if (u < x + 15 && u + 100 > x && 580 < y + 15 && 15 + 580 > y) {
+            vy *= -1.2;
+        }
 
-    ball.draw();
-    draw();
-    clickOn = true;
-    }
-});
+        window.onkeydown = function (event) {
+            var code = event.keyCode;
+            switch (code) {
+                case 37:
+                    context.rotate(Math.PI / 2);
+                    break;
+                case 39:
+                    q += 12;
+                    break;
 
-}); //LOAD  AU CHARGEMENT
+            }
+        }
+
+        window.requestAnimationFrame(game);
+    };
+
+
+    window.addEventListener('click', function () {
+        document.body.style.margin = '20px';
+        document.getElementById('canvas').style.borderColor = "purple";
+        var laDivDemonBouton = document.createElement('div');
+        laDivDemonBouton.id = 'maDiv';
+        laDivDemonBouton.style.position = 'absolute';
+        laDivDemonBouton.style.margin = 'auto';
+        laDivDemonBouton.style.display = 'block';
+        var monBouton = document.createElement('button');
+        monBouton.id = 'monBouton';
+        monBouton.style.backgroundColor = 'purple';
+        laDivDemonBouton.appendChild(monBouton);
+        document.body.appendChild(laDivDemonBouton);
+        document.getElementById('monBouton').innerHTML = 'play';
+        document.getElementById('monBouton').addEventListener('click', function () {
+            laDivDemonBouton.style.display = 'none';
+
+            return game();
+        })
+    })
+
+})//ONLOAD
+

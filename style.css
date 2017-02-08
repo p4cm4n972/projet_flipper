@@ -1,7 +1,7 @@
 body {
-  background-image: url("img/bkg.jpg");
+ /* background-image: url("img/bkg.jpg");*/
   background-size: cover;
-  margin: 0;
+  margin: 20px;
   padding: 0; }
 
 #canvas {
@@ -9,6 +9,7 @@ body {
   margin: auto;
   background-image: none;
   background-size: cover;
-  border-color: transparent;
+  border-color: purple;
   border-style: solid;
   border-radius: 5px; }
+

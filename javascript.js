@@ -3,8 +3,6 @@ window.addEventListener('load', function () { //CHARGEMENT (LOAD) DE LA PAGE
     var context = document.getElementById('canvas').getContext('2d'); //DECLARATION DU CONTEXT DU CANVAS : 2D (2 DIMENSIONS)
     var mur = new Image('width: 600, height: 620');// CREATION DUN NOUVEL OBJET IMAGE 'MUR' QUI CONTIENDRA L'IMAGE  REPRESENTANT L'IMAGE DE FOND DU CANVAS
     mur.src = 'img/font.jpg';//ATTRIBUTION DE LA SOURCE DE L'IMAGE 
-    //var tableauCouleur = ['Aqua', 'Black', 'Blue', 'Fuchsia', 'Gray', 'Green', 'Lime', 'Maroon', 'Navy', 'Olive', 'Purple', 'Red', 'Silver', 'Teal', 'White', 'Yellow'];
-//DECALRATION VARIABLES GLOBALES
     
 
 //DECLARATION DE L'OBJET QUI REPRESENTERA LA BALLE
@@ -70,6 +68,7 @@ window.addEventListener('load', function () { //CHARGEMENT (LOAD) DE LA PAGE
         if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
             ball.vx = -ball.vx;
         }
+       
 
       
 
